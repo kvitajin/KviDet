@@ -1,0 +1,14 @@
+[submodule "yolo"]
+	path = detector/yolo
+	url = https://github.com/eriklindernoren/PyTorch-YOLOv3.git
+	ignore = dirty
+[submodule "sort"]
+	path = tracker/sort
+	url = https://github.com/abewley/sort.git
+	ignore = dirty
+[submodule "tracker/sort"]
+	path = tracker/sort
+	url = https://github.com/abewley/sort.git
+[submodule "detector/yolo"]
+	path = detector/yolo
+	url = https://github.com/eriklindernoren/PyTorch-YOLOv3.git
