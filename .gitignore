@@ -1,0 +1,19 @@
+# CPython
+__pycache__
+
+# VirtualEnvironment
+.venv
+
+# IDE files
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+
+# Pretrained binaries
+weights
+
+# Disassembled videos to frames
+samples/*_frames

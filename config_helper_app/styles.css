@@ -1,0 +1,24 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    max-width: 1280px;
+    margin: auto;
+}
+
+canvas {
+    width: 100%;
+}
+
+#image_and_list_container {
+    display: grid;
+    grid-template-columns: 10em auto;
+    grid-template-rows: auto;
+}
+#image_and_list_container > .right {
+    border: dashed;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Pomocná aplikace pro konfiguraci KviDet</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<main>
+    <label>Referenční snímek:</label>
+    <br/>
+    <input accept="image/*" id="imageLoader" name="imageLoader" type="file"/>
+    <br/>
+
+    <div id="image_and_list_container">
+        <div class="left">
+            <label>Vyznačené vektory:</label>
+            <ol id="vectorList"></ol>
+        </div>
+        <div class="right">
+            <canvas id="imageCanvas"></canvas>
+        </div>
+    </div>
+</main>
+
+<script src="scripts.js"></script>
+</body>
+</html>
