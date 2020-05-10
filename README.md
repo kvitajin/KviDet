@@ -12,7 +12,7 @@
 ```bash
 # stažení repozitáře
 git clone --recurse-submodules https://github.com/kvitajin/KviDet.git
-cd kvitajin-bak
+cd KviDet
 
 # instalace závislostí
 bash setup.sh
