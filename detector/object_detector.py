@@ -22,19 +22,20 @@ class ObjectDetector:
     def __init__(self):
         script_dir = os.path.dirname(__file__)
 
-        self._model = Darknet(os.path.join(script_dir, "yolo/config/yolov3.cfg"))
-        self._classes = load_classes(os.path.join(script_dir, "yolo/data/coco.names"))
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self._Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
+
+        self._model = Darknet(os.path.join(script_dir, "yolo/config/yolov3.cfg")).to(self._device)
+        self._classes = load_classes(os.path.join(script_dir, "yolo/data/coco.names"))
 
         if config.WEIGHTS_PATH.endswith(".weights"):
             self._model.load_darknet_weights(config.WEIGHTS_PATH)
         else:
-            self._model.load_state_dict(config.WEIGHTS_PATH)
+            self._model.load_state_dict(torch.load(config.WEIGHTS_PATH))
 
         self._model.eval()
 
-    def detect_in_image_tensor(self, image_tensor: torch.FloatTensor):
+    def detect_in_image_tensor(self, image_tensor):
         input_image = Variable(image_tensor.type(self._Tensor))
 
         with torch.no_grad():

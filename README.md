@@ -28,3 +28,4 @@ Pro odhad souřadnic těchto vektorů vám pomůže html/js aplikace ve složce 
 source .venv/bin/activate
 python3 -m kvidet cesta/k/videosouboru
 ```
+ukázky se nachází ve složce samples

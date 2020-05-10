@@ -17,14 +17,19 @@ def kvidet(input_video, config):
     tracker = Thread(target=tracker_thread, args=(to_track, to_summarize), daemon=True)
 
     loader.start()
+    if not config.SILENT:
+        print("loader started")
+
     detector.start()
+    if not config.SILENT:
+        print("detector started")
+
     tracker.start()
+    if not config.SILENT:
+        print("tracker started")
 
     if config.DEBUG:
-        while to_detect.empty() and to_track.empty():
-            sleep(1)
-
-        while not to_detect.empty() or not to_track.empty():
+        while to_summarize.empty():
             print(f"to_detect: {to_detect.qsize()} to_track: {to_track.qsize()}")
             sleep(2)
 
@@ -66,7 +71,7 @@ if __name__ == "__main__":
 
     arg_parser.add_argument("input_path", help="cesta k videosouboru nebo číslo videokamery")
     arg_parser.add_argument("--silent", "-s", help="zda vypisovat na standardní výstup průběh detekce",
-                            default=config_file.SILENT)
+                            default=config_file.SILENT, action="store_true")
     arg_parser.add_argument("--debug", "-d", help="zda vypisovat ladící údaje na standardní výstup",
                             default=config_file.DEBUG, action="store_true")
 
@@ -76,8 +81,8 @@ if __name__ == "__main__":
     config.SILENT = args.silent
     config.DEBUG = args.debug
 
-    sorted_vehicles_by_direction = kvidet(args.input_path, config)
+    result = kvidet(args.input_path, config)
 
     print("Results:")
-    for direction in sorted_vehicles_by_direction:
-        print(f"direction: {direction} vehicles: {len(sorted_vehicles_by_direction[direction])}")
+    for direction in result:
+        print(f"direction: {direction} vehicles: {len(result[direction])}")
