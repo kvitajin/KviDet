@@ -1,8 +1,8 @@
 from argparse import ArgumentParser
 from queue import Queue
 from threading import Thread
-from time import sleep
-
+from time import sleep, time
+from datetime import timedelta, datetime
 import config as config_file
 from threads import loader_thread, detector_thread, tracker_thread
 
@@ -62,7 +62,6 @@ def kvidet(input_video, config):
 
             if vehicle.motion_vector.is_between(bounding_vectors[0], bounding_vectors[1]):
                 sorted_vehicles_by_direction[direction].append(vehicle)
-
     return sorted_vehicles_by_direction
 
 
@@ -74,15 +73,22 @@ if __name__ == "__main__":
                             default=config_file.SILENT, action="store_true")
     arg_parser.add_argument("--debug", "-d", help="zda vypisovat ladící údaje na standardní výstup",
                             default=config_file.DEBUG, action="store_true")
+    arg_parser.add_argument("--time", "-t", help="zda vypisovat standardní výstup čas detekce",
+                            default=config_file.TIME, action="store_true")
 
     args = arg_parser.parse_args()
 
     config = config_file
     config.SILENT = args.silent
     config.DEBUG = args.debug
+    config.TIME = args.time
+    start_time = time()
 
-    result = kvidet(args.input_path, config)
-
+    result = kvidet(args.input_path, config) #
+    end_time = time()
     print("Results:")
     for direction in result:
         print(f"direction: {direction} vehicles: {len(result[direction])}")
+    if config.TIME:
+        formated_time=str(timedelta(seconds=end_time)-timedelta(seconds=start_time))
+        print("time:", formated_time)

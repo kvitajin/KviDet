@@ -7,6 +7,7 @@ IMG_TARGET_SIZE = 416
 MINIMUM_FRAME_DIFF = 1.5 / 100
 SILENT = False
 DEBUG = False
+TIME = True
 BOUNDING_VECTORS = {
     'LEFT': [
         Vector(x=-574, y=-189),
