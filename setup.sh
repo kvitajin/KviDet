@@ -77,4 +77,5 @@ sed -i "s|matplotlib.use('TkAgg')|matplotlib.use('agg')|" tracker/sort/sort.py
 # instalace knihoven
 echo "Instaluji knihovny"
 echo "--------------------------"
+python3 -m pip install wheel
 python3 -m pip install -r requirements.txt

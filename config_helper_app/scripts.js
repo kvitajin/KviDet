@@ -55,8 +55,8 @@ function handleImage(e) {
             canvas.width = img.width;
             canvas.height = img.height;
             const boundingRect = ctx.canvas.getBoundingClientRect();
-            ctx.scale(canvas.width / boundingRect.width, canvas.height / boundingRect.height);
             ctx.drawImage(img, 0, 0);
+            ctx.scale(canvas.width / boundingRect.width, canvas.height / boundingRect.height);
         }
         img.src = event.target.result;
     }

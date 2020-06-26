@@ -8,6 +8,7 @@ MINIMUM_FRAME_DIFF = 1.5 / 100
 SILENT = False
 DEBUG = False
 TIME = True
+PROGRESS = False
 BOUNDING_VECTORS = {
     'LEFT': [
         Vector(x=-574, y=-189),
