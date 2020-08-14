@@ -1,17 +1,21 @@
 from queue import Queue
 from time import sleep
 
+from tqdm import tqdm
+
 from detector import ObjectDetector, DetectedObject
 from data.geometry import Point, BoundingBox
 from detector.yolo.utils.utils import load_classes
 from threads import Task, QueueMessage
 
 
-def detector_thread(to_detect: Queue, to_track: Queue):
-    detector = ObjectDetector()
+def detector_thread(object_detector: ObjectDetector, to_detect: Queue, to_track: Queue, progressbar: tqdm):
     classes = load_classes("detector/yolo/data/coco.names")
 
     while True:
+        if object_detector.stop:
+            break
+
         if to_detect.empty():
             sleep(1)
             continue
@@ -21,8 +25,9 @@ def detector_thread(to_detect: Queue, to_track: Queue):
         if task.message == QueueMessage.DONE:
             break
 
+        progressbar.update(1)
         img_tensor = task.payload
-        detections = detector.detect_in_image_tensor(img_tensor)
+        detections = object_detector.detect_in_image_tensor(img_tensor)
 
         detected_vehicles = []
         if detections is not None:

@@ -12,3 +12,5 @@ weights
 
 # Disassembled videos to frames
 samples/*_frames
+
+samples/*

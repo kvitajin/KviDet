@@ -22,6 +22,8 @@ class ObjectDetector:
     def __init__(self):
         script_dir = os.path.dirname(__file__)
 
+        self.stop = False
+
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self._Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 

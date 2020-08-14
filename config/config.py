@@ -9,6 +9,7 @@ SILENT = False
 DEBUG = False
 TIME = True
 PROGRESS = False
+FRAME_SKIP = 0
 BOUNDING_VECTORS = {
     'LEFT': [
         Vector(x=-574, y=-189),

@@ -48,6 +48,8 @@ def find_object_by_data(detected_objects: List[DetectedObject], raw_data: List):
 
 class ObjectTracker:
     def __init__(self):
+        self.stop = False
+
         self._mot_tracker = Sort()
         self._objects: Dict[TrackedObject] = {}
 
